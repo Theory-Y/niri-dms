@@ -1,18 +1,14 @@
-// niri config — DMS-integrated.
-// Base kept minimal; themeable pieces live in ./dms/*.kdl (regenerate via `dms setup <piece>`).
-// KDL format: https://niri-wm.github.io/niri/Configuration:-Introduction
-
-// ---- DMS includes (order: colors first so later layout can override) ----
+// === Imports ===
+// colors first so later layout can override
 include "dms/colors.kdl"
-include "dms/layout.kdl"
-// dms/binds.kdl dropped — all binds consolidated into user-binds.kdl (DMS-safe).
-include "dms/user-binds.kdl"
 include "dms/alttab.kdl"
 include "dms/windowrules.kdl"
 include "dms/outputs.kdl"
-include "dms/cursor.kdl"
 
-// ---- Input (laptop) ----
+include "user/binds.kdl"
+include "user/cursor.kdl"
+include "user/theme.kdl"
+
 input {
     keyboard {
         xkb {
@@ -24,33 +20,24 @@ input {
     touchpad {
         tap
         natural-scroll
-        dwt              // disable-while-typing — uncomment if palm rejection wanted
+        dwt              // disable-while-typing
         // accel-speed 0.2
     }
 
     mouse {
-        // natural-scroll
-        accel-profile "flat"   // disable pointer acceleration (raw 1:1 movement)
+        accel-profile "flat"
     }
 
-    // Hyprland-style: focus follows mouse hover anywhere + cursor warps to keyboard-focused window.
+    // Hyprland-style: focus follows mouse hover anywhere + cursor jumps to keyboard-focused window.
     focus-follows-mouse
     warp-mouse-to-focus
 }
 
-// ---- Autostart ----
+// === Autostart ===
 spawn-at-startup "dms" "run"                                         // DankMaterialShell
 spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"  // polkit prompts
 
-// ---- Blur ----
-blur {
-    on
-    passes 2
-    noise 0.02
-}
-
-// ---- Misc ----
-prefer-no-csd // disables client-side decors
+// === Misc ===
 screenshot-path "~/Pictures/Screenshots/Screenshot From %Y-%m-%d %H-%M-%S.png"
 
 hotkey-overlay {

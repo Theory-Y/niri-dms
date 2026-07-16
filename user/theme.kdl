@@ -1,0 +1,27 @@
+prefer-no-csd // disables client-side decors
+
+layout {
+    gaps 4
+    background-color "transparent"
+
+    border {
+        width 2
+    }
+
+    focus-ring {
+        width 2
+    }
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+    tiled-state true
+    draw-border-with-background false
+}
+
+recent-windows {
+    highlight {
+        corner-radius 16
+    }
+}
