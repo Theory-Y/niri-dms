@@ -1,0 +1,23 @@
+input {
+    keyboard {
+        xkb {
+            // Empty -> inherits from localectl / org.freedesktop.locale1.
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        dwt              // disable-while-typing
+        // accel-speed 0.2
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    // Hyprland-style: focus follows mouse hover anywhere + cursor jumps to keyboard-focused window.
+    focus-follows-mouse
+    warp-mouse-to-focus
+}

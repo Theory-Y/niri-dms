@@ -1,0 +1,12 @@
+screenshot-path "~/Pictures/Screenshots/Screenshot From %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+environment {
+    // Session runs on AMD iGPU (cardwire integrated). NVIDIA-offload apps set PRIME vars themselves.
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORM "wayland;xcb"
+    NIXOS_OZONE_WL "1"
+}

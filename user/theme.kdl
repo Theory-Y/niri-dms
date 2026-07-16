@@ -1,5 +1,9 @@
 prefer-no-csd // disables client-side decors
 
+cursor {
+    xcursor-theme "Bibata-Original-Ice"
+}
+
 layout {
     gaps 8
     background-color "transparent"
