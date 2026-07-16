@@ -1,51 +1,14 @@
-// === Imports ===
-// colors first so later layout can override
-include "dms/colors.kdl"
 include "dms/alttab.kdl"
-include "dms/windowrules.kdl"
+// include "dms/binds.kdl"      // user/binds.kdl
+include "dms/colors.kdl"        // colors first so later layout can override
+include "dms/cursor.kdl"
+// include "dms/layout.kdl"     // user/theme.kdl
 include "dms/outputs.kdl"
+include "dms/windowrules.kdl"
+include "dms/wpblur.kdl"
 
+include "user/autostart.kdl"
 include "user/binds.kdl"
-include "user/cursor.kdl"
+include "user/inputs.kdl"
+include "user/misc.kdl"
 include "user/theme.kdl"
-
-input {
-    keyboard {
-        xkb {
-            // Empty -> inherits from localectl / org.freedesktop.locale1.
-        }
-        numlock
-    }
-
-    touchpad {
-        tap
-        natural-scroll
-        dwt              // disable-while-typing
-        // accel-speed 0.2
-    }
-
-    mouse {
-        accel-profile "flat"
-    }
-
-    // Hyprland-style: focus follows mouse hover anywhere + cursor jumps to keyboard-focused window.
-    focus-follows-mouse
-    warp-mouse-to-focus
-}
-
-// === Autostart ===
-spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"  // polkit prompts
-
-// === Misc ===
-screenshot-path "~/Pictures/Screenshots/Screenshot From %Y-%m-%d %H-%M-%S.png"
-
-hotkey-overlay {
-    skip-at-startup
-}
-
-environment {
-    // Session runs on AMD iGPU (cardwire integrated). NVIDIA-offload apps set PRIME vars themselves.
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORM "wayland;xcb"
-    NIXOS_OZONE_WL "1"
-}
