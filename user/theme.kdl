@@ -5,35 +5,35 @@ layout {
     background-color "transparent"
 
     border {
-        width 2
+        width 2    // inactive border, default colour is transparent
     }
 
     focus-ring {
-        width 2
+        width 2    // active window border thickness
     }
 }
 
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-    tiled-state true
-    draw-border-with-background false
+    geometry-corner-radius 8
+    clip-to-geometry true                // true -> trims content to enforce rounding
+    tiled-state true                     // true -> lets niri have prio drawing corners
+    draw-border-with-background false    // false -> is border-only , no shape fill
 
     background-effect {
-        blur true // blur for transparent windows
-        xray true // true -> static blur, more efficient
+        blur true    // blur for transparent windows
+        xray true    // true -> static blur, more efficient
     }
-}
-
-blur {
-    passes 3
-    offset 4 // blur radius
-    noise 0.04
-    saturation 1.2
 }
 
 recent-windows {
     highlight {
-        corner-radius 16
+        corner-radius 8    // Alt+Tab highlight box rounding
     }
+}
+
+blur {
+    passes 3          // 3, higher = less artifacts at cost of GPU = hazier
+    offset 8          // 2 = subtle, 4 = medium, 8 = dreamy; higher needs more passes
+    noise 0.04        // 0 = smooth, 0.2 gritty
+    saturation 1.2    // 1 = true colours, 1.2 slightly punchy, 1.6 vibrant
 }
