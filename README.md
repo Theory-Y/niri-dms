@@ -1,7 +1,7 @@
 # niri + DMS dotfiles
 
 niri (WM) config and DankMaterialShell (DMS) presets in one repo. niri is
-live-symlinked; DMS is a minimal overlay under `dank/` (see `dank/README.md`).
+live-symlinked; DMS presets are applied by hand in the GUI (see `dank/README.md`).
 
 ## Install
 
@@ -9,7 +9,6 @@ live-symlinked; DMS is a minimal overlay under `dank/` (see `dank/README.md`).
 
 ```bash
 ln -sfn ~/Projects/niri-dms/niri ~/.config/niri
-cp dank/settings.json ~/.config/DankMaterialShell/settings.json
 sudo dnf install niri dms bibata-cursor-theme ocean-sound-theme
 systemctl --user add-wants niri.service dms
 ```
