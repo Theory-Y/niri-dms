@@ -29,7 +29,13 @@ for (const k in SPEC)
   if (Object.prototype.hasOwnProperty.call(SPEC[k], 'def')) defs[k] = SPEC[k].def;
 
 const live = JSON.parse(fs.readFileSync(livePath, 'utf8'));
-const DROP = new Set(['wifiNetworkPins']); // privacy: home SSIDs
+const DROP = new Set([
+  'wifiNetworkPins',          // privacy: home SSIDs
+  // inert: feature disabled, value never read (remove from here if you enable the feature)
+  'desktopClockCustomColor',  // desktopClockEnabled=false
+  'systemMonitorCustomColor', // systemMonitorEnabled=false
+  'customAnimationDuration',  // animationSpeed != custom
+]);
 
 const overlay = {};
 for (const k of Object.keys(live).sort()) {

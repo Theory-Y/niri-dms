@@ -126,37 +126,10 @@
       "cursorHideTimeout": 0
     }
   },
-  "customAnimationDuration": 1000,
-  "desktopClockCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
   "lockDateFormat": "yyyy-MM-dd",
   "notificationPopupPosition": 3,
   "osdPowerProfileEnabled": true,
   "soundVolumeChanged": false,
   "syncComponentAnimationSpeeds": false,
-  "systemMonitorCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
   "useSystemSoundTheme": true
 }

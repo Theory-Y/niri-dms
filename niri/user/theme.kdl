@@ -1,8 +1,6 @@
 prefer-no-csd // disables client-side decors
 
-cursor {
-    xcursor-theme "Bibata-Original-Ice"
-}
+// cursor declared in dms/cursor.kdl (auto-generated from DMS cursorSettings)
 
 layout {
     gaps 8
