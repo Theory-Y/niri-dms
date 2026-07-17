@@ -23,6 +23,9 @@ binds {
     Mod+Y hotkey-overlay-title="Browse Wallpapers" {
         spawn "dms" "ipc" "call" "dankdash" "wallpaper";
     }
+    Mod+S hotkey-overlay-title="Quick Settings" {
+        spawn "dms" "ipc" "call" "control-center" "toggle";
+    }
     Mod+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
     Ctrl+Shift+Escape hotkey-overlay-title="System Monitor" {
         spawn "flatpak" "run" "io.missioncenter.MissionCenter";

@@ -37,6 +37,7 @@ Everything below is the same table sorted by that logic.
 | Clipboard Manager        | Mod+V      |
 | Notifications            | Mod+M      |
 | Settings                 | Mod+I      |
+| Quick Settings           | Mod+S      |
 | Browse Wallpapers        | Mod+Y      |
 | Lock Screen              | Mod+L      |
 | Switch language          | Mod+Space  |
