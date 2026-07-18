@@ -33,7 +33,6 @@ Sonnet
 Opus
 Fable
 Qwen
-LLM
 local LLM
 local chat
 self-hosting
