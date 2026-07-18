@@ -1,0 +1,28 @@
+#!/bin/sh
+# Established by voxtype.service
+# 
+# Launches the voxtype daemon injecting vocabulary list.
+# - Flattens vocabulary.txt into comma separated string Whispr can read
+# - Ignores comments
+# - Inject vocabs into --initial-prompt string
+# - Starts voxtype daemon
+#
+# This allows us to have a dedicated vocab list instead of editing vocabs
+# inline in the ~/.config/voxtype.config.toml
+
+vocab_file="$HOME/.config/voxtype/vocabulary.txt"
+
+if [ -r "$vocab_file" ]; then
+	terms=$(
+		grep -vE '^[[:space:]]*(#|$)' "$vocab_file" \
+			| sed 's/^[[:space:]]*//; s/[[:space:]]*$//' \
+			| paste -sd, - \
+			| sed 's/,/, /g'
+	)
+	if [ -n "$terms" ]; then
+		exec /usr/bin/voxtype --initial-prompt "Vocabulary: $terms" daemon
+	fi
+fi
+
+# Non-readable / empty vocabulary: fall back to config.toml as-is.
+exec /usr/bin/voxtype daemon

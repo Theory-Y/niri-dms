@@ -1,5 +1,5 @@
 > [!WARNING]
-> THE COMMANDS IN THIS README IS DESIGNED FOR THE REPO TO BE CLONED TO `~/Projects` with its original name `Niri-dms`!!!
+> THE COMMANDS IN THIS README IS DESIGNED FOR THE REPO TO BE CLONED TO `~/Projects` with its original name `niri-dms`!!!
 
 ```bash
 mkdir -p ~/Projects
@@ -52,10 +52,6 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 
 Press hotkey, talk, and the text pastes at your cursor. An optional local-LLM tidies the grammar and spelling. Set it up in these blocks.
 
-`voxtype`'s config file lives in `~/.config/voxtype.config.toml`.
-
-You can edit via the TUI using `voxtype configure`.
-
 > [!TIP]
 > This is the solution I would suggest before OpenWhispr (which has a much simpler setup) implements better Wayland compositor support.
 >
@@ -71,14 +67,49 @@ voxtype setup --download  # download the speech model
 voxtype setup check       # report anything still missing
 ```
 
+### Configuring `voxtype`
+
+`voxtype`'s config file lives in `~/.config/voxtype/config.toml`.
+
+```bash
+cd ~/.config/voxtype
+$EDITOR config.toml
+```
+
+You can edit via the TUI using:
+
+```bash
+voxtype configure
+```
+
 ### `voxtype` Binding
 
-In Niri, it is bound via `niri/user/binds.kdl`:
+In this repo, it is bound via `niri/user/binds.kdl`:
 
 - `Alt+Space` -> start / stop recording
 - `Alt+Shift+Space` -> cancel, discards without pasting
 
 In the `voxtype` config, set `[hotkey] enabled = false` so Niri owns the key. (Set it `true` only on a desktop like GNOME, where Voxtype must listen for the key.)
+
+### Autostart
+
+Instead of `voxtype setup systemd` (which installs a stock unit that runs `voxtype daemon` directly), use the repo's unit + launcher so the vocabulary comes from `vocabulary.txt`:
+
+```bash
+repo=~/Projects/niri-dms/voxtype
+cp -n "$repo/vocabulary.txt.example" "$repo/vocabulary.txt"   # your private copy (gitignored)
+ln -sfn "$repo/vocabulary.txt"  ~/.config/voxtype/vocabulary.txt
+ln -sfn "$repo/voxtype-with-vocab-list"  ~/.config/voxtype/voxtype-with-vocab-list
+ln -sfn "$repo/voxtype.service" ~/.config/systemd/user/voxtype.service
+systemctl --user daemon-reload
+systemctl --user enable --now voxtype    # autostart on login + start now
+```
+
+After any config or vocabulary change:
+
+```bash
+systemctl --user restart voxtype
+```
 
 ### Paste + sound
 
@@ -87,19 +118,23 @@ In the `voxtype` config, set `[hotkey] enabled = false` so Niri owns the key. (S
 
 ### Teach it your words
 
-Add proper nouns and jargon to `[whisper] initial_prompt`, comma-separated.
+Proper nouns and jargon that Whisper would otherwise mistranscribe live in `voxtype/vocabulary.txt` — one term per line, `#` comments and blank lines ignored:
 
-Example:
-
-```toml
-# ...
-
-[whisper]
-model = "base.en"
-initial_prompt = "Vocabulary: OpenWhispr, Qwen, LLM, local LLM, local chat, self-hosting, Iker, Erik, Katie, ProArt, ProArt P16, Zenbook, Zenbook S16, ThinkPad, Logi Bolt, Delux M800, NuPhy Air 75, IBM Plex, Fedora, Arch, Ubuntu, Debian, Gnome, KDE Plasma, Hyprland, NixOS, X11, Wayland, systemd, Bash, Zsh, Vim, Neovim, Docker, GitHub, GitLab, VS Code, JetBrains, Rust, Cargo, npm, pnpm, WireGuard, Tailscale, Btrfs, ZFS, Postgres, Redis, Flatpak, BU Questrom, NYU Stern, UofT, sonion, brainrot, low-key, high-key, Tuxie's, Tuxie's Wiki, arepa, empanada, Niri, Voxtype, PaperWM, compositor, Wayland compositor"
-
-# ... code omitted
 ```
+# voxtype/vocabulary.txt
+# --- AI / LLM ---
+OpenWhispr
+Claude
+Qwen
+# --- People (add your own) ---
+Jane Doe
+Bob
+# ... etc
+```
+
+The repo ships an template vocabulary list `vocabulary.txt.example`; the [Autostart](#autostart) step copies it to `vocabulary.txt`, which is **gitignored** — so your personal word list stays local and is never pushed.
+
+Voxtype can't read a word list from a file on its own — it only accepts an `initial_prompt` string in `config.toml` or the top-level `--initial-prompt` flag. So the daemon is launched through the `voxtype/voxtype-with-vocab-list` wrapper, which flattens `vocabulary.txt` into a single `Vocabulary: word-a, word-b, word-c` string and runs `voxtype --initial-prompt "…" daemon`.
 
 ### AI cleanup (optional)
 
@@ -127,13 +162,6 @@ command = "sh -c 'exec \"$HOME/.config/voxtype/cleanup.sh\"'"
 ```
 
 Swap models by editing its `MODEL=` line. Default uses Gemma 4 E4B
-
-### Autostart
-
-```bash
-voxtype setup systemd             # autostart on login
-systemctl --user restart voxtype  # reload after any config change
-```
 
 ### DMS extras
 
