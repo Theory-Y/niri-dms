@@ -121,9 +121,8 @@ After any config or vocabulary change:
 systemctl --user restart voxtype
 ```
 
-### Paste + sound
+### Sound feedback
 
-- `[output] mode = "paste"` -> text copies to clipboard and lands as one clean paste, not typed character by character.
 - `[audio.feedback] enabled = true`, `volume = 0.2` -> soft beep on record upon start and stop.
 
 ### Teach it your words
