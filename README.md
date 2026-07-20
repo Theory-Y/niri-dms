@@ -184,3 +184,8 @@ auth    substack      sysctem-auth
 First line lets `gaze` unlock DMS Lock, and second line allows for password fallback.
 
 Press enter in the DMS Lock to trigger `gaze`.
+
+## DMS Plugins I Use
+
+- Dank ASUS Control Center
+- Clight (auto screen brightness)
