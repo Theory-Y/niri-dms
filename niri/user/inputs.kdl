@@ -8,6 +8,9 @@ input {
 
     touchpad {
         tap
+        click-method "clickfinger"          // 1-finger click=left (anywhere), 2=right, 3=middle
+        tap-button-map "left-right-middle"  // 1-tap=left, 2=right, 3=middle
+        
         natural-scroll
         dwt              // disable-while-typing
         // accel-speed 0.2
