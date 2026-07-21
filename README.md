@@ -21,7 +21,7 @@ Niri configs is symlinked; DMS settings set by hand in its settings app. Optiona
 > Needs the Terra or Copr repo for DMS
 
 ```bash
-ln -sfn ~/Projects/niri-dms/niri ~/.config/niri
+ln -sin ~/Projects/niri-dms/niri ~/.config/niri
 systemctl --user add-wants niri.service dms
 ```
 
@@ -165,9 +165,9 @@ The following code
 ```bash
 repo=~/Projects/niri-dms/voxtype
 cp -n "$repo/dictionary.txt.example" "$repo/dictionary.txt"
-ln -sfn "$repo/dictionary.txt" ~/.config/voxtype/dictionary.txt
-ln -sfn "$repo/voxtype-with-dictionary.sh" ~/.config/voxtype/voxtype-with-dictionary.sh
-ln -sfn "$repo/voxtype.service" ~/.config/systemd/user/voxtype.service
+ln -sin "$repo/dictionary.txt" ~/.config/voxtype/dictionary.txt
+ln -sin "$repo/voxtype-with-dictionary.sh" ~/.config/voxtype/voxtype-with-dictionary.sh
+ln -sin "$repo/voxtype.service" ~/.config/systemd/user/voxtype.service
 systemctl --user daemon-reload
 systemctl --user enable --now voxtype    # autostart on login + start now
 ```
@@ -251,7 +251,7 @@ Installs Ollama, downloads gemma4:e4b model, applies LLM cleanup script:
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull gemma4:e4b
-ln -sfn ~/Projects/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
+ln -sin ~/Projects/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
 ```
 
 In `~/.config/voxtype/config.toml`, set the post processing command to use the LLM cleanup script:
