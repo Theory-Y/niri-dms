@@ -25,6 +25,39 @@ ln -sfn ~/Projects/niri-dms/niri ~/.config/niri
 systemctl --user add-wants niri.service dms
 ```
 
+## Nvidia High VRAM Fix
+
+The Nvidia driver doesn't return freed VRAM to Niri, so Niri can hog ~1 GiB VRAM instead of ~100 MiB. The driver ships a fix profile it is not wired automatically for Niri (Smithay-based compositors), so we have to apply it ourselves.
+
+Create `/etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json`:
+
+```json
+{
+  "rules": [
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": "niri"
+      },
+      "profile": "Limit Free Buffer Pool On Wayland Compositors"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "Limit Free Buffer Pool On Wayland Compositors",
+      "settings": [
+        {
+          "key": "GLVidHeapReuseRatio",
+          "value": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+Restart Niri to apply. See the [Niri Nvidia wiki](https://github.com/niri-wm/niri/wiki/Nvidia).
+
 ## fcitx5 + Rime Setup (Keyboard Layout Management, Chinese)
 
 Optional — skip if you don't use multiple keyboard layouts. This repo's Niri configs autostarts fcitx5 and sets `XMODIFIERS` X11 compatibility already (see `niri/user/autostart.kdl` & `misc.kdl`); the actual layout config and and hotkey are managed in `fcitx5` itself (`fcitx5-configtool` GUI available).
