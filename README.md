@@ -31,11 +31,9 @@ dms setup
 Backing up existing config and use repo config.
 
 ```bash
-echo "This will back up your current Niri configs"
-cp -rn ~/.config/niri ~/.config/niri.bak
-echo "This will copy back your dms configs"
-cp -rn ~/.config/niri.bak/dms ~/.config/niri/dms
-ln -sin ~/Projects/niri-dms/niri ~/.config
+mv ~/.config/niri ~/.config/niri.bak # backup niri configs
+cp -rn ~/.config/niri.bak/dms ~/Projects/niri-dms/niri/dms # import original dms settings back
+ln -s ~/Projects/niri-dms/niri ~/.config/niri # symlink repo niri/ configs to .config/niri
 ```
 
 ## Nvidia High VRAM Fix
