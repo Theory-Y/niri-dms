@@ -33,7 +33,7 @@ Backing up existing config and use repo config.
 ```bash
 mv ~/.config/niri ~/.config/niri.bak # backup niri configs
 cp -rn ~/.config/niri.bak/dms ~/Projects/niri-dms/niri/dms # import original dms settings back
-ln -s ~/Projects/niri-dms/niri ~/.config/niri # symlink repo niri/ configs to .config/niri
+ln -sfn ~/Projects/niri-dms/niri ~/.config/niri # symlink repo niri/ configs to .config/niri
 ```
 
 ## Nvidia High VRAM Fix
