@@ -126,8 +126,10 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 
 ### Plugins
 
-- Dank ASUS Control Center (ASUS laptops only)
+- Dank ASUS Control Center (ASUS laptops only; req `asusctl`)
+- Dank Battery Alerts
 - Clight (auto screen brightness; req: `clightd`)
+- Emoji & Unicode Launcher
 
 ## Voice Typing (`voxtype`)
 
