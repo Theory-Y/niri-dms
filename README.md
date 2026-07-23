@@ -4,13 +4,13 @@
 > [!TIP]
 > This repo uses symlinks to respective folders in `~/.config`. You can edit their configs within this repo folder.
 
+# Niri + DMS dotfiles
+
 ```bash
 mkdir -p ~/Projects
 cd ~/Projects
 git clone https://github.com/Theory-Y/niri-dms
 ```
-
-# Niri + DMS dotfiles
 
 Configs for the Niri window manager plus DankMaterialShell (DMS) presets.
 
@@ -18,7 +18,7 @@ Niri configs is symlinked; DMS settings set by hand in its settings app. Optiona
 
 ## Install Niri & DMS
 
-Installing packages on Fedora:
+### Installing packages on Fedora
 
 > Needs the Terra or Copr repo for DMS
 
@@ -28,21 +28,32 @@ systemctl --user add-wants niri.service dms
 dms setup
 ```
 
-Backing up existing config and use repo config.
+### Backs up your current `~/.config/niri` to `~/.config/niri.bak`
+
+**Run once / run only on non-symlink folders.** Running this on a symlinked folder would cause nesting.
 
 ```bash
-mv ~/.config/niri ~/.config/niri.bak # backup niri configs
-cp -rn ~/.config/niri.bak/dms ~/Projects/niri-dms/niri/dms # import original dms settings back
-ln -sfn ~/Projects/niri-dms/niri ~/.config/niri # symlink repo niri/ configs to .config/niri
+mv ~/.config/niri ~/.config/niri.bak
+```
+
+### Link repo Niri configs to `~/.config/niri`
+
+```bash
+ln -sfn ~/Projects/niri-dms/niri ~/.config/niri  # symlink repo niri/ configs to .config/niri
+```
+
+### Restore original DMS settings.
+
+```bash
+cp -r ~/.config/niri.bak/dms ~/Projects/niri-dms/niri/dms  # restore original dms settings
 ```
 
 ## Nvidia High VRAM Fix
 
 The Nvidia driver doesn't return freed VRAM to Niri, so Niri can hog ~1 GiB VRAM instead of ~100 MiB. The driver ships a fix profile it is not wired automatically for Niri (Smithay-based compositors), so we have to apply it ourselves.
 
-Create `/etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json`:
-
-```json
+```bash
+sudo tee /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json > /dev/null << 'EOF'
 {
   "rules": [
     {
@@ -65,6 +76,8 @@ Create `/etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-i
     }
   ]
 }
+EOF
+sudo chmod 644 /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json
 ```
 
 Restart Niri to apply. See the [Niri Nvidia wiki](https://github.com/niri-wm/niri/wiki/Nvidia).
