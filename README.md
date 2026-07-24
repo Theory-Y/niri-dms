@@ -38,15 +38,29 @@ mv ~/.config/niri ~/.config/niri.bak
 
 ### Link repo Niri configs to `~/.config/niri`
 
+Symlinks repo Niri configs to `~/.config/niri`. Create local version of `niri/user/hardware`.kdl and `niri/user/binds.kdl`.
+
+`config.kdl` imports `user/hardware.kdl` and `user/binds.kdl` but they are gitignored to let users maintain local copies. Niri fails to load if you don't scaffold them from `niri/template/`.
+
+The `dms/*.kdl` files are also gitignored — DMS writes them itself (colours, outputs, blur, etc) into the symlinked folder as you use its GUI. The stub loop below creates empty placeholders so Niri won't error on a missing include before DMS has written the real ones.
+
 ```bash
-ln -sfn ~/Projects/niri-dms/niri ~/.config/niri  # symlink repo niri/ configs to .config/niri
+repo=~/Projects/niri-dms/niri
+ln -sfn "$repo" ~/.config/niri  # symlink repo niri/ configs to .config/niri
+cp -n "$repo/template/hardware.kdl.template" "$repo/user/hardware.kdl"  # per-machine GPU settings
+cp -n "$repo/template/binds.kdl.template" "$repo/user/binds.kdl"        # your keybinds
+mkdir -p "$repo/dms"                                                    # empty stubs so dms/* includes don't fail
+for f in alttab colors cursor outputs windowrules wpblur; do
+  [ -e "$repo/dms/$f.kdl" ] || : > "$repo/dms/$f.kdl"
+done
 ```
 
-### Restore original DMS settings.
-
-```bash
-cp -r ~/.config/niri.bak/dms ~/Projects/niri-dms/niri/dms  # restore original dms settings
-```
+> [!NOTE]
+> `hardware.kdl.template` ships with `render-drm-device` commented out.
+>
+> On single-GPU machines, no modifications needed.
+>
+> On Multi-GPU (e.g. laptop with dGPU): uncomment it and point Niri at the GPU it should render on — see the comments in the file for finding the right path.
 
 ## Nvidia High VRAM Fix
 
@@ -197,10 +211,11 @@ The following code
 
 ```bash
 repo=~/Projects/niri-dms/voxtype
+mkdir -p ~/.config/systemd/user  # may not exist on fresh install
 cp -n "$repo/dictionary.txt.example" "$repo/dictionary.txt"
-ln -sin "$repo/dictionary.txt" ~/.config/voxtype/dictionary.txt
-ln -sin "$repo/voxtype-with-dictionary.sh" ~/.config/voxtype/voxtype-with-dictionary.sh
-ln -sin "$repo/voxtype.service" ~/.config/systemd/user/voxtype.service
+ln -sfn "$repo/dictionary.txt" ~/.config/voxtype/dictionary.txt
+ln -sfn "$repo/voxtype-with-dictionary.sh" ~/.config/voxtype/voxtype-with-dictionary.sh
+ln -sfn "$repo/voxtype.service" ~/.config/systemd/user/voxtype.service
 systemctl --user daemon-reload
 systemctl --user enable --now voxtype    # autostart on login + start now
 ```
@@ -278,13 +293,15 @@ Runs each transcript through a local LLM to fix grammar, converts to British spe
 
 > [!WARNING]
 > Needs Ollama **0.20+**. Ollama doesn't package for repos, that's why we are curling.
+>
+> `cleanup.sh` req: `jq` and `curl`.
 
 Installs Ollama, downloads gemma4:e4b model, applies LLM cleanup script:
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull gemma4:e4b
-ln -sin ~/Projects/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
+ln -sfn ~/Projects/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
 ```
 
 In `~/.config/voxtype/config.toml`, set the post processing command to use the LLM cleanup script:
