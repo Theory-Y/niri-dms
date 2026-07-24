@@ -1,5 +1,8 @@
-# Personal dictionary, stays local, never commited
-voxtype/dictionary.txt
-
 # DMS auto-generated
 niri/dms/**
+# Niri — per-machine configs, scaffolded from niri/template/*.template
+niri/user/hardware.kdl
+niri/user/binds.kdl
+
+# Personal dictionary, stays local, never commited
+voxtype/dictionary.txt
