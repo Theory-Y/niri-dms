@@ -21,6 +21,6 @@ input {
     }
 
     // Hyprland-style: focus follows mouse hover anywhere + cursor jumps to keyboard-focused window.
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="25%"
     warp-mouse-to-focus
 }
