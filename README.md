@@ -282,6 +282,19 @@ The repo ships an template dictionary list `voxtype/dictionary.txt.example`; the
 
 Voxtype can't read a word list from a file on its own — it only accepts an `initial_prompt` string in `config.toml`. To avoid cluttering the config file, we use `voxtype/voxtype-with-dictionary.sh` to process and inject `dictionary.txt` to run `voxtype --initial-prompt "…" daemon`.
 
+### QoL Additions to `.bashrc`
+
+Add these to your `~/.bashrc` (or your shell's config — `~/.zshrc`, `~/.config/fish/config.fish`, etc.):
+
+- `edit-dict` to edit the dictionary.
+- `restart-voxtype` to restart voxtype after dictionary edit (or switching GPUs after turning GPU on/off).
+
+```bash
+# voxtype QoL aliases
+alias edit-dict='$EDITOR $HOME/.config/voxtype/dictionary.txt'
+alias restart-voxtype='systemctl --user restart voxtype.service'
+```
+
 ### AI cleanup (optional)
 
 Runs each transcript through a local LLM to fix grammar, converts to British spelling, strips the "um"s.
