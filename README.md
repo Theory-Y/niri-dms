@@ -206,6 +206,7 @@ The following code
 - Links the following to `~/.config/voxtype/`:
   - `voxtype/dictionary.txt` — portable dictionary list.
   - `voxtype/voxtype-with-dictionary.sh` — script that pipes dictionary list into whispr.
+- And likes the following to `~/.config/systemd/user/`:
   - `voxtype/voxtype.service` — `systemd` service that tells `voxtype` to always use the script above.
 - Reloads and starts custom `voxtype`.
 
