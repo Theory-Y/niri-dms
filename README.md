@@ -288,12 +288,14 @@ Voxtype can't read a word list from a file on its own — it only accepts an `in
 Add these to your `~/.bashrc` (or your shell's config — `~/.zshrc`, `~/.config/fish/config.fish`, etc.):
 
 - `edit-dict` to edit the dictionary.
-- `restart-voxtype` to restart voxtype after dictionary edit (or switching GPUs after turning GPU on/off).
+- `restart-voxtype` to restart voxtype after dictionary edit.
+- `restart-voxllm` to restart voxtype and ollama to use dGPU after turning GPU on.
 
 ```bash
 # voxtype QoL aliases
 alias edit-dict='$EDITOR $HOME/.config/voxtype/dictionary.txt'
 alias restart-voxtype='systemctl --user restart voxtype.service'
+alias restart-voxllm='systemctl --user restart voxtype.service && systemctl restart ollama'
 ```
 
 ### AI cleanup (optional)
