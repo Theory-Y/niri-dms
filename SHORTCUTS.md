@@ -6,18 +6,18 @@ Source: `user/binds.kdl`
 
 Every bind is `[modifiers] + [key]`. The **modifiers say what kind of action**, the **key says the target**. Learn the four modifier "verbs" and most binds become guessable.
 
-| Modifier stack       | Meaning (the "verb")                          | Muscle-memory hook                  |
-| -------------------- | --------------------------------------------- | ----------------------------------- |
-| **Mod**              | Focus / act / launch — the everyday layer     | "just do it"                        |
-| **Mod + Shift**      | Move / amplify the Mod action                 | Shift = "with force" (carry, grow)  |
-| **Mod + Ctrl**       | Aim at a bigger container (monitor, workspace)| Ctrl = "one level up"               |
-| **Mod + Ctrl + Shift** | Move window into that bigger container       | Ctrl (target) + Shift (move)        |
-| **Mod + Alt**        | Merge / split columns (consume · expel)       | Alt = "sideways special"            |
+| Modifier stack         | Meaning (the "verb")                           | Muscle-memory hook                 |
+| ---------------------- | ---------------------------------------------- | ---------------------------------- |
+| **Mod**                | Focus / act / launch — the everyday layer      | "just do it"                       |
+| **Mod + Shift**        | Move / amplify the Mod action                  | Shift = "with force" (carry, grow) |
+| **Mod + Ctrl**         | Aim at a bigger container (monitor, workspace) | Ctrl = "one level up"              |
+| **Mod + Ctrl + Shift** | Move window into that bigger container         | Ctrl (target) + Shift (move)       |
+| **Mod + Alt**          | Merge / split columns (consume · expel)        | Alt = "sideways special"           |
 
 Two consistent axes underneath:
 
 - **Shift added to any Mod bind = "and take the window with me."** Focus left → move left. Focus workspace → move-to workspace. Grow column → grow window (the other dimension).
-- **Ctrl escalates the target.** Mod+Arrow focuses a *window*; Mod+Ctrl+Arrow focuses a *monitor* / *workspace*.
+- **Ctrl escalates the target.** Mod+Arrow focuses a _window_; Mod+Ctrl+Arrow focuses a _monitor_ / _workspace_.
 
 Everything below is the same table sorted by that logic.
 
@@ -45,10 +45,10 @@ Everything below is the same table sorted by that logic.
 
 Alt-based, independent of the Mod layers.
 
-| Action             | Bind            |
-| ------------------ | --------------- |
-| Toggle dictation   | Alt+Space       |
-| Cancel dictation   | Alt+Shift+Space |
+| Action           | Bind            |
+| ---------------- | --------------- |
+| Toggle dictation | Alt+Space       |
+| Cancel dictation | Alt+Shift+Space |
 
 ### Window basics
 
@@ -60,6 +60,8 @@ Alt-based, independent of the Mod layers.
 | Toggle floating            | Mod+T   |          |
 | Switch preset column width | Mod+R   |          |
 | Center column              | Mod+C   |          |
+
+Mod+T toggles float. When floating, it centres resizes window to 50% × 70%; when tiling, it resizes to 66.667% (Mod+R's third preset) and centres.
 
 ### Focus — window (Arrows) · column ends (Home/End)
 
@@ -74,10 +76,10 @@ Alt-based, independent of the Mod layers.
 
 ### Size — grow/shrink column width
 
-| Action              | Bind      |
-| ------------------- | --------- |
-| Column width +10%   | Mod+Equal |
-| Column width -10%   | Mod+Minus |
+| Action            | Bind      |
+| ----------------- | --------- |
+| Column width +10% | Mod+Equal |
+| Column width -10% | Mod+Minus |
 
 ### Workspaces — jump by number
 
@@ -87,12 +89,12 @@ Alt-based, independent of the Mod layers.
 
 ### Mouse wheel (Mod held)
 
-| Action                | Bind                 |
-| --------------------- | -------------------- |
-| Focus workspace down  | Mod+WheelScrollDown  |
-| Focus workspace up    | Mod+WheelScrollUp    |
-| Focus column right    | Mod+WheelScrollRight |
-| Focus column left     | Mod+WheelScrollLeft  |
+| Action               | Bind                 |
+| -------------------- | -------------------- |
+| Focus workspace down | Mod+WheelScrollDown  |
+| Focus workspace up   | Mod+WheelScrollUp    |
+| Focus column right   | Mod+WheelScrollRight |
+| Focus column left    | Mod+WheelScrollLeft  |
 
 ---
 
@@ -102,12 +104,12 @@ Same keys as Layer 1, one meaning: **carry the focused window, or push the actio
 
 ### Move window / column
 
-| Action            | Bind            | (Layer-1 pair)   |
-| ----------------- | --------------- | ---------------- |
-| Move column left  | Mod+Shift+Left  | focus left       |
-| Move window down  | Mod+Shift+Down  | focus down       |
-| Move window up    | Mod+Shift+Up    | focus up         |
-| Move column right | Mod+Shift+Right | focus right      |
+| Action            | Bind            | (Layer-1 pair) |
+| ----------------- | --------------- | -------------- |
+| Move column left  | Mod+Shift+Left  | focus left     |
+| Move window down  | Mod+Shift+Down  | focus down     |
+| Move window up    | Mod+Shift+Up    | focus up       |
+| Move column right | Mod+Shift+Right | focus right    |
 
 ### Move column → workspace by number
 
@@ -117,14 +119,14 @@ Same keys as Layer 1, one meaning: **carry the focused window, or push the actio
 
 ### Amplified window ops (Shift flips the dimension)
 
-| Key | Mod (width / column)        | Mod+Shift (height / window)              |
-| --- | --------------------------- | ---------------------------------------- |
-| F   | Maximize column             | Fullscreen window                        |
-| T   | Toggle floating             | Switch focus floating ↔ tiling           |
-| R   | Switch preset column width  | Reset window height                      |
-| C   | Center column               | Center visible columns                   |
-| =   | Column width +10%           | Window height +10%                       |
-| -   | Column width -10%           | Window height -10%                       |
+| Key | Mod (width / column)       | Mod+Shift (height / window)    |
+| --- | -------------------------- | ------------------------------ |
+| F   | Maximize column            | Fullscreen window              |
+| T   | Toggle floating (resizes)  | Switch focus floating ↔ tiling |
+| R   | Switch preset column width | Reset window height            |
+| C   | Center column              | Center visible columns         |
+| =   | Column width +10%          | Window height +10%             |
+| -   | Column width -10%          | Window height -10%             |
 
 ### Other Mod+Shift
 

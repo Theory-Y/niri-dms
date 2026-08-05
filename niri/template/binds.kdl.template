@@ -52,7 +52,7 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
-    Mod+T { toggle-window-floating; }
+    Mod+T { spawn "sh" "-c" "niri msg action toggle-window-floating; if niri msg -j focused-window | grep -q is_floating.:true; then niri msg action set-window-width 50%; niri msg action set-window-height 70%; niri msg action center-window; else niri msg action set-column-width 66.667%; sleep 0.1; niri msg action center-column; fi"; }
     Mod+Shift+T { switch-focus-between-floating-and-tiling; }
 
     // === Focus windows ===
