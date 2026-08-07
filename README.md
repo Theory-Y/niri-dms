@@ -38,11 +38,12 @@ mv ~/.config/niri ~/.config/niri.bak
 
 ### Link repo Niri configs to `~/.config/niri`
 
-Symlinks repo Niri configs to `~/.config/niri`. Create local version of `niri/user/hardware`.kdl and `niri/user/binds.kdl`.
+> [!NOTE]
+> `config.kdl` imports `user/hardware.kdl` and `user/binds.kdl` but they are gitignored to let users maintain local copies. Niri fails to load if you don't scaffold them from `niri/template/`.
+>
+> The `dms/*.kdl` files are also gitignored — DMS writes them itself (colours, outputs, blur, etc) into the symlinked folder as you use its GUI. The stub loop below creates empty placeholders so Niri won't error on a missing include before DMS has written the real ones.
 
-`config.kdl` imports `user/hardware.kdl` and `user/binds.kdl` but they are gitignored to let users maintain local copies. Niri fails to load if you don't scaffold them from `niri/template/`.
-
-The `dms/*.kdl` files are also gitignored — DMS writes them itself (colours, outputs, blur, etc) into the symlinked folder as you use its GUI. The stub loop below creates empty placeholders so Niri won't error on a missing include before DMS has written the real ones.
+Symlinks repo Niri configs to `~/.config/niri`. Creates local version of `niri/user/hardware`.kdl and `niri/user/binds.kdl`.
 
 ```bash
 repo=~/Projects/niri-dms/niri
@@ -147,7 +148,7 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 
 ## Voice Typing (`voxtype`)
 
-Press hotkey, talk, and the text pastes at your cursor. An optional local-LLM tidies the grammar and spelling. Set it up in these blocks.
+Press hotkey, talk, and the text pastes at your cursor. An optional local-LLM tidies the grammar and spelling.
 
 > [!TIP]
 > `voxtype` is the solution I would suggest before OpenWhispr implements better Wayland compositor support.
