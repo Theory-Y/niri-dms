@@ -68,6 +68,7 @@ done
 The Nvidia driver doesn't return freed VRAM to Niri, so Niri can hog ~1 GiB VRAM instead of ~100 MiB. The driver ships a fix profile it is not wired automatically for Niri (Smithay-based compositors), so we have to apply it ourselves.
 
 ```bash
+sudo mkdir -p /etc/nvidia/nvidia-application-profiles-rc.d/
 sudo tee /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json > /dev/null << 'EOF'
 {
   "rules": [
