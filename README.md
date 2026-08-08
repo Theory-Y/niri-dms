@@ -327,3 +327,20 @@ In `~/.config/voxtype/config.toml`, set the post processing command to use the L
 [output.post_process]
 command = "sh -c 'exec \"$HOME/.config/voxtype/cleanup.sh\"'"
 ```
+
+## `gaze` (facial recognition) integration with DMS Lock
+
+`gaze` has yet to add official support for DMS Lock. DMS Lock reads `/etc/pam.d/dankshell`:
+
+```bash
+sudo tee /etc/pam.d/dankshell > /dev/null << 'EOF'
+#%PAM-1.0
+# Let gaze unlock DMS Lock
+auth    sufficient    pam_gaze.so
+# Fall back to password
+auth    substack      system-auth
+EOF
+sudo chmod 644 /etc/pam.d/dankshell
+```
+
+Press enter in the DMS Lock to trigger `gaze`.
