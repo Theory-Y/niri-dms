@@ -9,6 +9,21 @@ debug {
     // highlighted in red).
     //
     // Uncomment and set to your render node. Single-GPU machines can leave
-    // this commented out — niri picks the device automatically.
+    // this commented out. 
+    //
+    // ▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿
     // render-drm-device "/dev/dri/renderD128"
+
+    // If you are experiencing flicking / artifacts in a dGPU + iGPU 
+    // setup, you can: 
+    //     1. (Recommended for laptops) Render on iGPU and use the flag below
+    //        to tell Niri to wait for frames to finish rendering before
+    //        displaying them. 
+    //         + Allows you to keep power usage low by using iGPU
+    //         - Introduces a latency (that you may or may not notice)
+    //     2. Render on dGPU only and ignore the flag below
+    //
+    // ▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿
+    // wait-for-frame-completion-before-queueing
+
 }
