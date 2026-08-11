@@ -14,7 +14,7 @@ debug {
     // ▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿▿
     // render-drm-device "/dev/dri/renderD128"
 
-    // If you are experiencing flicking / artifacts in a dGPU + iGPU 
+    // If you are experiencing flickering / artifacts in a dGPU + iGPU 
     // setup, you can: 
     //     1. (Recommended for laptops) Render on iGPU and use the flag below
     //        to tell Niri to wait for frames to finish rendering before
