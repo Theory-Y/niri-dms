@@ -115,18 +115,39 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 >
 > I highly suggest declaring bindings via the .kdl file and back up to a remote instead of using the DMS GUI.
 
-### Personalisation
+### Personalization
 
 - Wallpaper -> Duplicate with Blur -> true (blurry overview)
-- Theme & Colours
-  - Theme Colours -> Auto
-  - Automatic Colour Mode
-    - Automatic Control & Share Gamma Control Settings
+- Theme & Color
+  - Theme Color -> Auto
+  - Automatic Color Mode
+    - Automatic Control
+    - Share Gamma Control Settings
 
 ### Dank Bar
 
 - Positions
-- Widgets
+- Widgets; here are some suggestions:
+  - Left
+    - Workspace Switcher
+    - Running Apps
+  - Centre
+    - Media Controls
+  - Right
+    - System Tray
+    - dGPU Sleep Monitor _(plugin)_
+    - Dank ASUS Control Center _(plugin)_
+    - Control Center
+    - Clock
+    - Notification Center
+
+### Plugins
+
+- Dank ASUS Control Center (ASUS laptops only; req `asusctl`)
+- Dank Battery Alerts
+- dGPU Sleep Monitor (change GPU modes; req: `cardwire`)
+- Clight (auto screen brightness; req: `clightd`)
+- Emoji & Unicode Launcher
 
 ### Displays
 
@@ -139,13 +160,6 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 - Lock before suspend -> true
 - Plugged in: lock 5m, screen off 30m, sleep 1hr
 - On battery: lock 5m, screen off 5m, sleep 15m
-
-### Plugins
-
-- Dank ASUS Control Center (ASUS laptops only; req `asusctl`)
-- Dank Battery Alerts
-- Clight (auto screen brightness; req: `clightd`)
-- Emoji & Unicode Launcher
 
 ## Voice Typing (`voxtype`)
 
