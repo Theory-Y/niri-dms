@@ -3,11 +3,11 @@
 Feel free to:
 
 ```bash
-cp -rn ~/Projects/niri-dms/wallpapers ~/Pictures/Wallpapers # copies folder, no override
+cp -rn ~/.dotfiles/niri-dms/wallpapers ~/Pictures/Wallpapers # copies folder, no override
 ```
 
 or
 
 ```bash
-ln -sin ~/Projects/niri-dms/wallpapers ~/Pictures/Wallpapers # link folder
+ln -sin ~/.dotfiles/niri-dms/wallpapers ~/Pictures/Wallpapers # link folder
 ```

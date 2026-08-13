@@ -1,5 +1,6 @@
 > [!CAUTION]
-> THE COMMANDS IN THIS README IS DESIGNED FOR THE REPO TO BE CLONED TO `~/Projects` WITH ITS ORIGINAL NAME `niri-dms`!!!
+> The commands in this README assume the repo lives at `~/.dotfiles/niri-dms`.
+> Clone it there with the command below, or adjust the `repo=` line in each block.
 
 > [!TIP]
 > This repo uses symlinks to respective folders in `~/.config`. You can edit their configs within this repo folder.
@@ -7,9 +8,8 @@
 # Niri + DMS dotfiles
 
 ```bash
-mkdir -p ~/Projects
-cd ~/Projects
-git clone https://github.com/Theory-Y/niri-dms
+mkdir -p ~/.dotfiles
+git clone https://github.com/aier9500/niri-dms ~/.dotfiles/niri-dms
 ```
 
 Configs for the Niri window manager plus DankMaterialShell (DMS) presets.
@@ -46,7 +46,7 @@ mv ~/.config/niri ~/.config/niri.bak
 Symlinks repo Niri configs to `~/.config/niri`. Creates local version of `niri/user/hardware`.kdl and `niri/user/binds.kdl`.
 
 ```bash
-repo=~/Projects/niri-dms/niri
+repo=~/.dotfiles/niri-dms/niri
 ln -sfn "$repo" ~/.config/niri  # symlink repo niri/ configs to .config/niri
 cp -n "$repo/template/hardware.kdl.template" "$repo/user/hardware.kdl"  # per-machine GPU settings
 cp -n "$repo/template/binds.kdl.template" "$repo/user/binds.kdl"        # your keybinds
@@ -222,12 +222,12 @@ The following code
 - Links the following to `~/.config/voxtype/`:
   - `voxtype/dictionary.txt` — portable dictionary list.
   - `voxtype/voxtype-with-dictionary.sh` — script that pipes dictionary list into whispr.
-- And likes the following to `~/.config/systemd/user/`:
+- And links the following to `~/.config/systemd/user/`:
   - `voxtype/voxtype.service` — `systemd` service that tells `voxtype` to always use the script above.
 - Reloads and starts custom `voxtype`.
 
 ```bash
-repo=~/Projects/niri-dms/voxtype
+repo=~/.dotfiles/niri-dms/voxtype
 mkdir -p ~/.config/systemd/user  # may not exist on fresh install
 cp -n "$repo/dictionary.txt.example" "$repo/dictionary.txt"
 ln -sfn "$repo/dictionary.txt" ~/.config/voxtype/dictionary.txt
@@ -333,7 +333,7 @@ Installs Ollama, downloads gemma4:e4b model, applies LLM cleanup script:
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull gemma4:e4b
-ln -sfn ~/Projects/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
+ln -sfn ~/.dotfiles/niri-dms/voxtype/cleanup.sh ~/.config/voxtype/cleanup.sh
 ```
 
 In `~/.config/voxtype/config.toml`, set the post processing command to use the LLM cleanup script:
