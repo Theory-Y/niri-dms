@@ -35,7 +35,7 @@ systemctl --user add-wants niri.service dms
 dms setup
 ```
 
-Relogin. (Ctrl + Shift + E to log out; Niri default)
+Relogin. (`Mod+Shift+E` to log out; Niri default)
 
 ### Backs up your current `~/.config/niri` to `~/.config/niri.bak`
 
@@ -63,7 +63,7 @@ cp -rn "$repo/template/." "$repo/user/"  # per-machine GPU settings
 # Stub loop to create DMS config placeholders
 mkdir -p "$repo/dms"
 for file in alttab colors cursor outputs windowrules wpblur; do
-  if [ -e "$repo/dms/$file.kdl" ]; then
+  if [ ! -e "$repo/dms/$file.kdl" ]; then
     touch "$repo/dms/$file.kdl"
   fi
 done
