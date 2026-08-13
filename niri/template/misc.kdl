@@ -1,3 +1,5 @@
+// Personal: fcitx Xmodifier
+
 screenshot-path "~/Pictures/Screenshots/Screenshot From %Y-%m-%d %H-%M-%S.png"
 
 hotkey-overlay {

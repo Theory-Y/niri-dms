@@ -1,3 +1,7 @@
+//
+// The vast majority of what Niri looks like, minus the colours, which are handled by DMs. 
+//
+
 prefer-no-csd // disables client-side decors
 
 // cursor declared in dms/cursor.kdl (auto-generated from DMS cursorSettings)

@@ -1,5 +1,7 @@
-// All niri binds — user-owned, in user/ so `dms setup binds` never clobbers them.
-// dms/binds.kdl is no longer included by config.kdl (DMS may still regenerate it; ignored).
+//
+// All Niri keybindings. 
+//
+
 binds {
 
     // === Show hotkeys ===

@@ -1,3 +1,5 @@
+// Personal: click-method "clickfinger", hyprland-style hover to focus & cursor jumps with keyboard focus
+
 input {
     keyboard {
         xkb {
@@ -20,7 +22,7 @@ input {
         accel-profile "flat"
     }
 
-    // Hyprland-style: focus follows mouse hover anywhere + cursor jumps to keyboard-focused window.
+    // Hyprland-style: hover to focus & cursor jumps with keyboard focus
     focus-follows-mouse max-scroll-amount="25%"
     warp-mouse-to-focus
 }
