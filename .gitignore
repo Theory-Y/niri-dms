@@ -1,8 +1,7 @@
 # DMS auto-generated
 niri/dms/**
-# Niri — per-machine configs, scaffolded from niri/template/*.template
-niri/user/hardware.kdl
-niri/user/binds.kdl
+# Niri — per-machine configs, scaffolded from niri/template/*
+niri/user/*
 
 # Personal dictionary, stays local, never commited
 voxtype/dictionary.txt
