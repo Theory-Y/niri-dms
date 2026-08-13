@@ -3,30 +3,39 @@
 > Clone it there with the command below, or adjust the `repo=` line in each block.
 
 > [!TIP]
-> This repo uses symlinks to respective folders in `~/.config`. You can edit their configs within this repo folder.
+> This repo uses symlinks to their respectives folders in `~/.config` (e.g. ~/.config/niri, ~/.config/voxtype). You can their configs in one place in `~/.dotfiles/niri-dms`.
 
 # Niri + DMS dotfiles
+
+## Features
+
+- Be able to have a polished Niri experience in ~15 minutes.
+- Sane and tested keyboard shortcuts (partially inspired by Windows).
+- UI tuning that is:
+  - Clean & modern.
+  - Out-of-the-way with fast but lively animations.
+- Voxtype (dictation) setup, and optional local LLM cleanup layer.
+- Edit (almost) everything in this repo, all in one place!
+
+## To clone this repo
 
 ```bash
 mkdir -p ~/.dotfiles
 git clone https://github.com/aier9500/niri-dms ~/.dotfiles/niri-dms
 ```
 
-Configs for the Niri window manager plus DankMaterialShell (DMS) presets.
-
-Niri configs is symlinked; DMS settings set by hand in its settings app. Optional voice typing via `voxtype` setup before OpenWhispr implements Wayland compositor support.
-
 ## Install Niri & DMS
 
 ### Installing packages on Fedora
 
-> Needs the Terra or Copr repo for DMS
-
-```
+```bash
+# Needs the Terra or Copr repo for DMS
 sudo dnf install niri dms
 systemctl --user add-wants niri.service dms
 dms setup
 ```
+
+Relogin. (Ctrl + Shift + E to log out; Niri default)
 
 ### Backs up your current `~/.config/niri` to `~/.config/niri.bak`
 
@@ -36,34 +45,38 @@ dms setup
 mv ~/.config/niri ~/.config/niri.bak
 ```
 
-### Link repo Niri configs to `~/.config/niri`
+### Scaffold, then link repo Niri configs to `~/.config/niri`
 
 > [!NOTE]
-> `config.kdl` imports `user/hardware.kdl` and `user/binds.kdl` but they are gitignored to let users maintain local copies. Niri fails to load if you don't scaffold them from `niri/template/`.
+> The repo supplies you with config templates in `niri/template`. Use the code block below to create your editable copies at `niri/user` (gitignored).
 >
-> The `dms/*.kdl` files are also gitignored — DMS writes them itself (colours, outputs, blur, etc) into the symlinked folder as you use its GUI. The stub loop below creates empty placeholders so Niri won't error on a missing include before DMS has written the real ones.
+> The `dms/*.kdl` files are also gitignored as DMS rewrites them (colours, outputs, blur, etc) as you use its GUI. The stub loop below creates empty placeholders so Niri won't error on a missing include before DMS has written the real ones.
 
 Symlinks repo Niri configs to `~/.config/niri`. Creates local version of `niri/user/hardware`.kdl and `niri/user/binds.kdl`.
 
 ```bash
 repo=~/.dotfiles/niri-dms/niri
+
 ln -sfn "$repo" ~/.config/niri  # symlink repo niri/ configs to .config/niri
-cp -n "$repo/template/hardware.kdl.template" "$repo/user/hardware.kdl"  # per-machine GPU settings
-cp -n "$repo/template/binds.kdl.template" "$repo/user/binds.kdl"        # your keybinds
-mkdir -p "$repo/dms"                                                    # empty stubs so dms/* includes don't fail
-for f in alttab colors cursor outputs windowrules wpblur; do
-  [ -e "$repo/dms/$f.kdl" ] || : > "$repo/dms/$f.kdl"
+cp -rn "$repo/template/." "$repo/user/"  # per-machine GPU settings
+
+# Stub loop to create DMS config placeholders
+mkdir -p "$repo/dms"
+for file in alttab colors cursor outputs windowrules wpblur; do
+  if [ -e "$repo/dms/$file.kdl" ]; then
+    touch "$repo/dms/$file.kdl"
+  fi
 done
 ```
 
 > [!NOTE]
-> `hardware.kdl.template` ships with `render-drm-device` commented out.
+> `hardware.kdl` ships with `render-drm-device` commented out.
 >
 > On single-GPU machines, no modifications needed.
 >
-> On Multi-GPU (e.g. laptop with dGPU): uncomment it and point Niri at the GPU it should render on — see the comments in the file for finding the right path.
+> On Multi-GPU (e.g. laptop with dGPU) you might want to check `hardware.kdl`.
 
-## Nvidia High VRAM Fix
+### Nvidia High VRAM Fix
 
 The Nvidia driver doesn't return freed VRAM to Niri, so Niri can hog ~1 GiB VRAM instead of ~100 MiB. The driver ships a fix profile it is not wired automatically for Niri (Smithay-based compositors), so we have to apply it ourselves.
 
@@ -98,7 +111,7 @@ sudo chmod 644 /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer
 
 Restart Niri to apply. See the [Niri Nvidia wiki](https://github.com/niri-wm/niri/wiki/Nvidia).
 
-## fcitx5 + Rime Setup (Keyboard Layout Management, Chinese)
+### fcitx5 + Rime Setup (Keyboard Layout Management, Chinese)
 
 Optional — skip if you don't use multiple keyboard layouts. This repo's Niri configs autostarts fcitx5 and sets `XMODIFIERS` X11 compatibility already (see `niri/user/autostart.kdl` & `misc.kdl`); the actual layout config and and hotkey are managed in `fcitx5` itself (`fcitx5-configtool` GUI available).
 
@@ -113,7 +126,7 @@ Some settings worth changing in the DMS settings after fresh install. Sorted by 
 > [!TIP]
 > This repo's keyboard shortcuts live in `niri/user/binds.kdl`.
 >
-> I highly suggest declaring bindings via the .kdl file and back up to a remote instead of using the DMS GUI.
+> I highly suggest not using the DMS GUI for bindings. Consider binding via the .kdl file and backing them up.
 
 ### Personalization
 
