@@ -69,7 +69,7 @@ capture="$HOME/.config/DankMaterialShell/plugins/voxtypeActivityOverlay/scripts/
 
 clean() {
 	jq -Rs --arg model "$MODEL" --arg sys "$SYSTEM" \
-		'{model:$model, stream:false, think:false, options:{temperature:0}, messages:[
+		'{model:$model, stream:false, think:false, keep_alive:-1, options:{temperature:0, num_ctx:8192}, messages:[
 			{role:"system",content:$sys},
 			{role:"user",content:("<transcript>\n" + . + "\n</transcript>")}
 		]}' \
