@@ -27,19 +27,20 @@ Everything below is the same table sorted by that logic.
 
 ### Launchers & apps
 
-| Action                   | Bind       |
-| ------------------------ | ---------- |
-| App Launcher (spotlight) | Mod+A      |
-| Files (nautilus)         | Mod+E      |
-| Zen Browser              | Mod+B      |
-| Terminal (ghostty)       | Mod+Return |
-| Notepad                  | Mod+N      |
-| Clipboard Manager        | Mod+V      |
-| Notifications            | Mod+M      |
-| Settings                 | Mod+I      |
-| Quick Settings           | Mod+S      |
-| Browse Wallpapers        | Mod+Y      |
-| Lock Screen              | Mod+L      |
+| Action                   | Bind             |
+| ------------------------ | ---------------- |
+| App Launcher (spotlight) | Mod+A            |
+| Files (nautilus)         | Mod+E            |
+| Zen Browser              | Mod+B            |
+| Terminal (ghostty)       | Mod+Return       |
+| Obsidian                 | Mod+Shift+Return |
+| Notepad                  | Mod+N            |
+| Clipboard Manager        | Mod+V            |
+| Notifications            | Mod+M            |
+| Settings                 | Mod+I            |
+| Quick Settings           | Mod+S            |
+| Browse Wallpapers        | Mod+Y            |
+| Lock Screen              | Mod+L            |
 
 ### Dictation (voxtype)
 

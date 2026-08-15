@@ -15,6 +15,7 @@ binds {
 
     // === Apps ===
     Mod+Return          { spawn "ghostty"; }
+    Mod+Shift+Return    { spawn "flatpak" "run" "md.obsidian.Obsidian"; }
     Ctrl+Shift+Escape   { spawn "flatpak" "run" "io.missioncenter.MissionCenter"; }
     Alt+Space       { spawn "voxtype" "record" "toggle"; }
     Alt+Shift+Space { spawn "voxtype" "record" "cancel"; }
