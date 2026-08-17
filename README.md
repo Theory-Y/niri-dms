@@ -58,7 +58,7 @@ Symlinks repo Niri configs to `~/.config/niri`. Creates local version of `niri/u
 repo=~/.dotfiles/niri-dms/niri
 
 ln -sfn "$repo" ~/.config/niri  # symlink repo niri/ configs to .config/niri
-cp -rn "$repo/template/." "$repo/user/"  # per-machine GPU settings
+cp -rn "$repo/template/." "$repo/user/"  # copy templates
 
 # Stub loop to create DMS config placeholders
 mkdir -p "$repo/dms"
