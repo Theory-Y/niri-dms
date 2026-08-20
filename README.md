@@ -1,3 +1,10 @@
+> [!WARNING]
+> **2026-08-20** — ARCHIVED
+>
+> This repo has been superceded by [niri-noctalia](https://github.com/aier9500/niri-noctalia).
+>
+> This repo may still work for a while, but I cannot guarantee it not breaking as new updates roll out. 
+
 > [!CAUTION]
 > The commands in this README assume the repo lives at `~/.dotfiles/niri-dms`.
 > Clone it there with the command below, or adjust the `repo=` line in each block.
